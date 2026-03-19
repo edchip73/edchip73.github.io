@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlos Eduardo Souza Santos - Gerente de Suporte Técnico</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Card principal com efeito glassmorphism */
+        .profile-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Header com gradiente */
+        .profile-header {
+            background: linear-gradient(120deg, #1a1a2e 0%, #16213e 100%);
+            color: white;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-header::before {
+            content: "GERENTE DE SUPORTE";
+            position: absolute;
+            bottom: -10px;
+            right: 20px;
+            font-size: 80px;
+            font-weight: 900;
+            color: rgba(255, 255, 255, 0.03);
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .profile-name {
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-title {
+            font-size: 1.5rem;
+            color: #a8b5ff;
+            font-weight: 500;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Grid de informações de contato */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: #4f46e5;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-text {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .contact-text strong {
+            display: block;
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-bottom: 2px;
+        }
+
+        /* Seções principais */
+        .section {
+            padding: 30px 40px;
+            border-bottom: 1px solid #eef2f6;
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title span {
+            background: linear-gradient(120deg, #4f46e5, #7c3aed);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+        }
+
+        /* Cards de formação acadêmica */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .education-card {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 20px;
+            border-left: 4px solid #4f46e5;
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 30px -15px #4f46e5;
+        }
+
+        .education-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+
+        .education-card p {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+
+        .education-card .period {
+            display: inline-block;
+            background: #e0e7ff;
+            color: #4f46e5;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Área de habilidades com tags */
+        .skills-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 100px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            box-shadow: 0 4px 15px -5px #764ba2;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px -5px #764ba2;
+        }
+
+        /* Timeline de experiência */
+        .timeline {
+            position: relative;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 30px;
+            border-left: 2px solid #e2e8f0;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #4f46e5;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px #4f46e5;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #4f46e5;
+            padding: 5px 15px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-company {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1a1a2e;
+            margin-bottom: 5px;
+        }
+
+        .timeline-role {
+            font-size: 1rem;
+            color: #4f46e5;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .timeline-description {
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .timeline-description ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .timeline-description li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .timeline-description li::before {
+            content: "•";
+            color: #4f46e5;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Cards de cursos */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .course-card {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .course-card:hover {
+            border-color: #4f46e5;
+            transform: translateY(-3px);
+        }
+
+        .course-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1a1a2e;
+            margin-bottom: 5px;
+        }
+
+        .course-card p {
+            color: #64748b;
+            font-size: 0.85rem;
+        }
+
+        /* Barra de progresso estilizada */
+        .expertise-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .expertise-item {
+            margin-bottom: 20px;
+        }
+
+        .expertise-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: #1a1a2e;
+            font-weight: 500;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #e2e8f0;
+            border-radius: 100px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4f46e5, #7c3aed);
+            border-radius: 100px;
+            transition: width 1s ease;
+            width: 0;
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fadeInUp {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+
+            .profile-header {
+                padding: 30px 20px;
+            }
+
+            .profile-name {
+                font-size: 2rem;
+            }
+
+            .profile-title {
+                font-size: 1.2rem;
+            }
+
+            .section {
+                padding: 30px 20px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Citação especial */
+        .quote-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 4px solid #4f46e5;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+            font-style: italic;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        /* Números de destaque */
+        .highlight-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #4f46e5;
+            line-height: 1;
+            margin-bottom: 5px;
+        }
+
+        .highlight-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Card Principal do Perfil -->
+        <div class="profile-card fadeInUp">
+            <div class="profile-header">
+                <h1 class="profile-name">Carlos Eduardo de Souza Santos</h1>
+                <div class="profile-title">Gerente de Suporte Técnico</div>
+                
+                <!-- Grid de Contato -->
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">
+                            <strong>Localização</strong>
+                            Belém - PA
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div class="contact-text">
+                            <strong>Telefone</strong>
+                            (91) 99192-0911
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-text">
+                            <strong>E-mail</strong>
+                            edchip73@gmail.com
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">💼</div>
+                        <div class="contact-text">
+                            <strong>LinkedIn</strong>
+                            /in/carlos-eduardo...
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resumo Profissional -->
+            <div class="section">
+                <div class="section-title">
+                    👨‍💻 Sobre mim
+                    <span>+25 anos</span>
+                </div>
+                <div class="quote-box">
+                    Profissional de Tecnologia da Informação com mais de 25 anos de experiência em infraestrutura, redes, suporte técnico e gestão de equipes. Atualmente atuo como Gerente de Suporte Técnico, responsável pela gestão de uma central de serviços com equipes multidisciplinares. Especializações em Business Intelligence, Gestão de Processos e Governança de TI fortalecem minha atuação estratégica na gestão de serviços de tecnologia.
+                </div>
+            </div>
+
+            <!-- Habilidades em Nuvem -->
+            <div class="section">
+                <div class="section-title">
+                    🚀 Competências
+                </div>
+                <div class="skills-cloud">
+                    <span class="skill-tag">Gestão de Suporte de TI</span>
+                    <span class="skill-tag">Infraestrutura de Redes</span>
+                    <span class="skill-tag">Governança de TI</span>
+                    <span class="skill-tag">Service Desk</span>
+                    <span class="skill-tag">Gestão de Chamados</span>
+                    <span class="skill-tag">SLA</span>
+                    <span class="skill-tag">Liderança de Equipes</span>
+                    <span class="skill-tag">Indicadores de Desempenho</span>
+                </div>
+            </div>
+
+            <!-- Formação Acadêmica -->
+            <div class="section">
+                <div class="section-title">
+                    📚 Formação Acadêmica
+                </div>
+                <div class="education-grid">
+                    <div class="education-card">
+                        <h3>MBA em Governança de TI</h3>
+                        <p>Uniasselvi</p>
+                        <span class="period">2022 – 2023</span>
+                    </div>
+                    <div class="education-card">
+                        <h3>MBA em Gestão de Processos</h3>
+                        <p>Uniasselvi</p>
+                        <span class="period">2021 – 2022</span>
+                    </div>
+                    <div class="education-card">
+                        <h3>MBA em Business Intelligence</h3>
+                        <p>Uniasselvi</p>
+                        <span class="period">2020 – 2021</span>
+                    </div>
+                    <div class="education-card">
+                        <h3>Tecnologia em Processamento de Dados</h3>
+                        <p>Centro Universitário de Volta Redonda</p>
+                        <span class="period">1993 – 1995</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experiência Profissional -->
+            <div class="section">
+                <div class="section-title">
+                    💼 Trajetória Profissional
+                </div>
+                <div class="timeline">
+                    <!-- Experiência Atual -->
+                    <div class="timeline-item">
+                        <span class="timeline-date">MAI 2025 - ATUAL</span>
+                        <div class="timeline-company">RGN | Revemar Gestão de Negócios</div>
+                        <div class="timeline-role">Gerente de Suporte Técnico</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Gestão de equipes de suporte técnico em central de serviços de TI</li>
+                                <li>Liderança de times responsáveis por atendimento e resolução de chamados</li>
+                                <li>Monitoramento de indicadores de desempenho e qualidade do atendimento</li>
+                                <li>Gestão de fluxo de chamados em portal de atendimento corporativo</li>
+                                <li>Coordenação de equipe com cerca de 50 profissionais</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Experiência Anterior -->
+                    <div class="timeline-item">
+                        <span class="timeline-date">NOV 2014 - MAI 2025</span>
+                        <div class="timeline-company">RGN | Revemar Gestão de Negócios</div>
+                        <div class="timeline-role">Supervisor de TI</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Supervisão de equipes da central de serviços de TI</li>
+                                <li>Gestão de atendimento presencial e remoto a usuários</li>
+                                <li>Controle e distribuição da fila de chamados técnicos</li>
+                                <li>Acompanhamento de SLA e resolução de incidentes</li>
+                                <li>Suporte à operação de infraestrutura e sistemas corporativos</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-date">SET 2013 - AGO 2014</span>
+                        <div class="timeline-company">T.S. Franco Júnior EPP</div>
+                        <div class="timeline-role">Coordenador de TI</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Coordenação de equipes técnicas de refrigeração</li>
+                                <li>Gestão de estoque e aquisição de ferramentas</li>
+                                <li>Elaboração de orçamentos e negociação com fornecedores</li>
+                                <li>Controle de ordens de serviço via sistema</li>
+                                <li>Gestão de contratos e atendimento a clientes</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-date">OUT 2012 - ABR 2013</span>
+                        <div class="timeline-company">JS Tech Tecnologia e Gestão</div>
+                        <div class="timeline-role">Coordenador de TI</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Coordenação do departamento de TI da Siderúrgica Ibérica S.A.</li>
+                                <li>Implantação de OSM no departamento de suprimentos</li>
+                                <li>Suporte técnico e apoio ao sistema RM TOTVS</li>
+                                <li>Implantação de servidor de monitoramento Nagios</li>
+                                <li>Manutenção de infraestrutura de rede cabeada e fibra óptica</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <span class="timeline-date">JUL 2010 - MAI 2012</span>
+                        <div class="timeline-company">Nortelpa Engenharia S.A. – Junto Telecom</div>
+                        <div class="timeline-role">Coordenador de Rede</div>
+                        <div class="timeline-description">
+                            <ul>
+                                <li>Coordenação de equipes de instalação de internet e telefonia sem fio</li>
+                                <li>Implantação de enlaces de rádio em diversas frequências</li>
+                                <li>Implantação de backhaul interligando cidades do sul do Pará</li>
+                                <li>Configuração de rádios profissionais</li>
+                                <li>Coordenação de manutenção em rede de fibra óptica</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cursos Complementares -->
+            <div class="section">
+                <div class="section-title">
+                    🎯 Cursos & Certificações
+                </div>
+                <div class="courses-grid">
+                    <div class="course-card">
+                        <h4>ITIL® 4 Foundation</h4>
+                        <p>Certificação - Nov/2025</p>
+                    </div>
+                    <div class="course-card">
+                        <h4>Lógica de Programação</h4>
+                        <p>Softblue - 2013</p>
+                    </div>
+                    <div class="course-card">
+                        <h4>SQL Completo</h4>
+                        <p>Softblue - 2013</p>
+                    </div>
+                    <div class="course-card">
+                        <h4>Linux Essentials</h4>
+                        <p>4Linux - 2012</p>
+                    </div>
+                    <div class="course-card">
+                        <h4>Interligação de Redes WAN</h4>
+                        <p>Starlink - 2002</p>
+                    </div>
+                    <div class="course-card">
+                        <h4>Administração de Redes Linux</h4>
+                        <p>Starlink - 2002</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dados em Destaque -->
+            <div class="section">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; text-align: center;">
+                    <div>
+                        <div class="highlight-number">25+</div>
+                        <div class="highlight-label">Anos de Experiência</div>
+                    </div>
+                    <div>
+                        <div class="highlight-number">50</div>
+                        <div class="highlight-label">Profissionais Liderados</div>
+                    </div>
+                    <div>
+                        <div class="highlight-number">3</div>
+                        <div class="highlight-label">MBAs Concluídos</div>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script para animação das barras de progresso -->
+    <script>
+        // Animação simples para as barras de progresso quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressFills = document.querySelectorAll('.progress-fill');
+            
+            // Pequeno delay para a animação acontecer
+            setTimeout(() => {
+                progressFills.forEach(fill => {
+                    const width = fill.getAttribute('data-width') || '85';
+                    fill.style.width = width + '%';
+                });
+            }, 500);
+        });
+    </script>
+</body>
+</html>
